@@ -1,0 +1,617 @@
+/* src/components/ToolStyles.css */
+
+/* 工具容器的基本樣式 */
+.tool-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 100px 20px 50px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #3e2723;
+  transition: background-color 0.5s ease;
+}
+
+/* 工具頁面標題樣式 */
+.tool-title {
+  font-size: 3.5em;
+  color: #795548;
+  margin-bottom: 50px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 自我介紹卡片樣式 */
+.intro-card {
+  background-color: #fcecd5;
+  border-radius: 15px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 700px;
+  width: 90%;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.intro-card h3 {
+  font-size: 2em;
+  color: #a85f3e;
+  margin-bottom: 15px;
+}
+
+.intro-card p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #5c3a2f;
+}
+
+/* 自我介紹淡出動畫 */
+.intro-card.fade-out {
+  opacity: 0;
+  transform: translateY(-50px);
+  pointer-events: none;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 主要工具介面佈局 (包含側邊欄和右側對話區，通用於所有工具) */
+.main-tool-interface {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  min-height: 70vh;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 左側邊欄樣式 (通用於所有工具) */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background-color: #ede7e1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e0d8cf;
+}
+
+.new-conversation-button {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #a8795d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.new-conversation-button:hover {
+  background-color: #7c4c3b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.conversation-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* 對話列表項目 */
+.conversation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  background-color: #f5f2ed;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  color: #5c3a2f;
+  font-size: 0.95em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.conversation-item:hover {
+  background-color: #e0d8cf;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-item.active {
+  background-color: #d49a6a;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.conversation-item span {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.conversation-item .actions {
+  display: flex;
+  gap: 5px;
+}
+
+.action-icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #795548;
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.conversation-item.active .action-icon-button {
+    color: white;
+}
+
+.action-icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.delete-button:hover {
+  color: #dc3545;
+}
+
+/* 重新命名輸入框 */
+.rename-input, .current-conversation-rename-input {
+  width: calc(100% - 10px);
+  background-color: #fff;
+  border: 1px solid #c0b9a8;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 0.9em;
+  color: #3e2723;
+}
+.current-conversation-rename-input {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #e0d8cf;
+    border-radius: 0;
+    padding: 5px;
+    background: none;
+    color: #795548;
+}
+
+
+/* 右側對話卡片 (通用於對話工具) */
+.tool-card.conversation-tool-card {
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  box-shadow: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 當前對話名稱顯示 (適用於所有工具卡片) */
+.current-conversation-header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.current-conversation-name {
+    font-size: 1.8em;
+    color: #795548;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.current-conversation-name:hover {
+    color: #a85f3e;
+}
+
+
+/* 個人資料輸入區域 (生活管家專用) */
+.personal-info-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0d8cf;
+}
+/* 其他輸入框和按鈕樣式保持不變 */
+
+/* 對話顯示區域 (對話工具專用) */
+.conversation-display {
+  flex-grow: 1;
+  background-color: #fefdfb;
+  border: 1px solid #e0d8cf;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 400px;
+  margin-bottom: 15px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+  line-height: 1.7;
+  text-align: left;
+}
+/* 消息和聊天氣泡樣式保持不變 */
+.message {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message:last-child {
+  margin-bottom: 0;
+}
+
+.message.user {
+  align-items: flex-end;
+}
+
+.message.ai {
+  align-items: flex-start;
+}
+
+.message-role {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #795548;
+  margin-bottom: 5px;
+}
+
+.message-text {
+  padding: 12px 18px;
+  border-radius: 18px;
+  max-width: 80%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message.user .message-text {
+  background-color: #e0d8cf;
+  color: #3e2723;
+  border-bottom-right-radius: 5px;
+}
+
+.message.ai .message-text {
+  background-color: #fcecd5;
+  color: #3e2723;
+  border-bottom-left-radius: 5px;
+}
+
+/* AI 思考中的載入指示 */
+.typing-indicator {
+  font-style: italic;
+  color: #999;
+}
+
+/* 輸入與提交區域 (對話工具專用) */
+.input-submit-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* 表單輸入欄位 (通用) */
+.input-group label {
+  display: block;
+  font-size: 1.1em;
+  color: #5c3a2f;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.input-field,
+.input-textarea {
+  width: calc(100% - 20px);
+  padding: 12px;
+  border: 1px solid #c0b9a8;
+  border-radius: 8px;
+  font-size: 1em;
+  color: #3e2723;
+  background-color: #fffaf0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-field:focus,
+.input-textarea:focus {
+  border-color: #a85f3e;
+  box-shadow: 0 0 0 3px rgba(168, 95, 62, 0.2);
+  outline: none;
+}
+
+.input-textarea {
+  resize: vertical;
+  min-height: 60px;
+  max-height: 150px;
+  margin-bottom: 10px;
+}
+
+/* 動作按鈕 (發送按鈕) */
+.action-button {
+  padding: 15px 30px;
+  background-color: #795548;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  align-self: center;
+  width: auto;
+}
+
+.action-button:hover {
+  background-color: #5c3a2f;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+/* 評價星級樣式 */
+.rating-stars {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.rating-stars .star {
+  font-size: 2.5em;
+  color: #ccc;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.rating-stars .star:hover {
+  color: #ffda6b;
+  transform: scale(1.1);
+}
+
+.rating-stars .star:active {
+  transform: scale(0.9);
+}
+
+/* Markdown 表格樣式 (通用於 message-text) */
+.message-text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.95em;
+  background-color: #fefdfb;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.message-text th,
+.message-text td {
+  border: 1px solid #e0d8cf;
+  padding: 12px 18px;
+  text-align: left;
+  color: #3e2723;
+}
+
+.message-text th {
+  background-color: #e6bf96;
+  font-weight: bold;
+  color: #5c3a2f;
+  font-size: 1em;
+  text-transform: capitalize;
+}
+
+.message-text tr:nth-child(even) {
+  background-color: #fff8ed;
+}
+
+.message-text tr:hover {
+  background-color: #f5f2ed;
+  transition: background-color 0.2s ease;
+}
+
+.message-text p {
+  margin: 0 0 10px 0;
+  line-height: 1.7;
+  color: #3e2723;
+}
+
+.message-text ul,
+.message-text ol {
+  margin: 10px 0 10px 25px;
+  padding: 0;
+  color: #3e2723;
+}
+
+.message-text li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.message-text pre {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+.message-text code {
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+/* 回到最上按鈕樣式 */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #7c4c3b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+  z-index: 99;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  background-color: #5c3a2f;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 確保所有標題都有指針樣式 */
+h1, h2 {
+  cursor: pointer;
+}
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+  .navbar-menu {
+    gap: 15px; /* 縮小導覽列選單間距 */
+  }
+  .navbar-menu li button {
+    font-size: 1em; /* 縮小導覽列按鈕字體 */
+    padding: 8px 12px;
+  }
+  .submenu {
+    min-width: 150px; /* 縮小次選單寬度 */
+  }
+  .tool-category h3 {
+    font-size: 2em; /* 縮小類別標題 */
+  }
+  .tool-card-item {
+    padding: 25px; /* 縮小卡片內邊距 */
+  }
+}
+
+/* src/components/ToolStyles.css */
+
+/* ... (所有現有樣式保持不變) ... */
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+  .tool-container {
+      padding: 80px 10px 30px; /* 縮小工具頁面內邊距 */
+  }
+  .tool-title {
+      font-size: 2.5em; /* 縮小工具標題 */
+      margin-bottom: 30px;
+  }
+  .main-tool-interface {
+      flex-direction: column; /* 側邊欄和主內容區垂直堆疊 */
+      max-width: 95%; /* 佔用更多寬度 */
+      min-height: auto; /* 允許高度適應內容 */
+  }
+  .sidebar {
+      width: 100%; /* 側邊欄佔滿寬度 */
+      border-right: none; /* 移除右側邊框 */
+      border-bottom: 1px solid #e0d8cf; /* 增加底部邊框 */
+      padding-bottom: 10px;
+  }
+  .new-conversation-button {
+      margin-bottom: 10px;
+  }
+  .conversation-list {
+      max-height: 250px; /* 限制側邊欄列表高度，允許捲動 */
+  }
+  .tool-card.conversation-tool-card {
+      padding: 20px; /* 縮小主內容區內邊距 */
+      gap: 15px; /* 縮小內部間距 */
+  }
+  .personal-info-inputs {
+      flex-direction: column; /* 個人資料輸入框垂直堆疊 */
+      gap: 10px;
+      margin-bottom: 15px;
+  }
+  .input-field, .input-textarea {
+      width: calc(100% - 24px); /* 調整輸入框寬度 */
+  }
+  .conversation-display {
+      max-height: 300px; /* 縮小對話框高度 */
+      padding: 15px;
+  }
+  .message-text {
+      max-width: 95%; /* 訊息氣泡佔用更多寬度 */
+  }
+  .action-button {
+      font-size: 1.1em;
+      padding: 12px 25px;
+  }
+  /* 對於筆記大師的特別調整 (雖然這個CSS只用於生活工具，但為未來預留) */
+  .note-results-section {
+      flex-direction: column; /* 整理欄和摘要欄垂直堆疊 */
+  }
+  .note-output {
+      max-height: 200px; /* 縮小高度 */
+  }
+}
+
+@media (max-width: 480px) {
+  .tool-title {
+      font-size: 2em;
+      margin-bottom: 25px;
+  }
+  .intro-card {
+      padding: 25px;
+      font-size: 0.9em;
+  }
+  .message-role {
+      font-size: 0.8em;
+  }
+  .message-text {
+      font-size: 0.9em;
+      padding: 10px 15px;
+  }
+  .input-field, .input-textarea {
+      font-size: 0.9em;
+      padding: 10px;
+  }
+  .action-button {
+      font-size: 1em;
+      padding: 10px 20px;
+  }
+  .go-home-button {
+      font-size: 0.9em;
+      padding: 10px 20px;
+      margin-top: 20px;
+  }
+}

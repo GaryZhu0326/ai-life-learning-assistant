@@ -1,0 +1,262 @@
+/* src/components/LearningToolStyles.css */
+
+/* AI 筆記大師特有樣式 */
+/* 這個 .tool-card 和 .main-tool-interface 樣式與 ToolStyles.css 中的同名類別不同 */
+/* 它們將覆蓋通用樣式，或提供額外佈局。 */
+.tool-card.note-master-card { /* 筆記大師的主卡片樣式 */
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    box-shadow: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 60vh;
+}
+
+.note-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.note-section label {
+    font-size: 1.1em;
+    color: #5c3a2f;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.note-input-section .input-textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid #c0b9a8;
+    border-radius: 8px;
+    font-size: 1em;
+    color: black; /* 筆記欄字顯示黑色 */
+    background-color: #fffaf0;
+    resize: vertical;
+    min-height: 150px;
+}
+
+.note-input-section .action-button {
+    margin-top: 15px;
+    align-self: flex-end;
+    width: auto;
+}
+
+.note-results-section {
+    display: flex;
+    gap: 20px;
+    flex-grow: 1;
+    min-height: 250px;
+}
+
+.organized-section, .summary-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-output {
+    flex-grow: 1;
+    background-color: #fcecd5;
+    border: 1px solid #e0d8cf;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 300px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+    color: #0000FF; /* 整理欄與摘要欄字顯示藍色 */
+    line-height: 1.7;
+    text-align: left;
+}
+
+/* Markdown 表格樣式 (通用於 .note-output 內部) */
+.note-output table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.95em;
+  background-color: #fefdfb;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.note-output th,
+.note-output td {
+  border: 1px solid #e0d8cf;
+  padding: 12px 18px;
+  text-align: left;
+  color: #3e2723;
+}
+
+.note-output th {
+  background-color: #e6bf96;
+  font-weight: bold;
+  color: #5c3a2f;
+  font-size: 1em;
+  text-transform: capitalize;
+}
+
+.note-output tr:nth-child(even) {
+  background-color: #fff8ed;
+}
+
+.note-output tr:hover {
+  background-color: #f5f2ed;
+  transition: background-color 0.2s ease;
+}
+
+/* 確保表格內容中的其他元素也有基本樣式，並與整體風格協調 */
+.note-output p {
+  margin: 0 0 10px 0;
+  line-height: 1.7;
+  color: #3e2723;
+}
+
+.note-output ul,
+.note-output ol {
+  margin: 10px 0 10px 25px;
+  padding: 0;
+  color: #3e2723;
+}
+
+.note-output li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.note-output pre {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+.note-output code {
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+
+/* AI 語言專家特有樣式 */
+.language-selection-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* 佔滿空間 */
+    gap: 30px;
+    padding: 20px;
+    text-align: center;
+}
+
+.language-selection-area h3 {
+    font-size: 2.2em;
+    color: #795548;
+    margin-bottom: 20px;
+}
+
+.language-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.language-button {
+    padding: 18px 35px;
+    background-color: #e6bf96; /* 暖棕橘色 */
+    color: #5c3a2f; /* 深褐色文字 */
+    border: 2px solid #a8795d; /* 邊框 */
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.language-button:hover {
+    background-color: #d49a6a; /* 懸停時變深 */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 確保語言選擇界面的 input-group 和 action-button 樣式與通用樣式一致 */
+.language-selection-area .input-group {
+    width: 80%;
+    max-width: 350px;
+    margin: 0 auto; /* 置中 */
+}
+
+.language-selection-area .action-button {
+    width: 100%; /* 按鈕寬度適應 */
+    margin-top: 15px; /* 與輸入框的間距 */
+}
+
+/* src/components/LearningToolStyles.css */
+
+/* ... (所有現有樣式保持不變) ... */
+
+/* 響應式調整 - 學習工具專用 */
+@media (max-width: 768px) {
+  /* 這些樣式與 ToolStyles.css 的通用響應式調整類似，但確保針對 .note-master-card 適用 */
+  .tool-card.note-master-card {
+      padding: 20px;
+      gap: 15px;
+  }
+  .note-section {
+      margin-bottom: 15px;
+  }
+  .note-input-section .input-textarea {
+      min-height: 100px; /* 縮小筆記輸入框高度 */
+  }
+  .note-results-section {
+      flex-direction: column; /* 整理欄和摘要欄垂直堆疊 */
+      min-height: auto;
+  }
+  .organized-section, .summary-section {
+      margin-bottom: 15px; /* 垂直堆疊後的間距 */
+  }
+  .note-output {
+      max-height: 150px; /* 縮小結果區高度 */
+  }
+  .language-selection-area h3 {
+      font-size: 1.8em;
+  }
+  .language-buttons {
+      flex-direction: column; /* 語言選擇按鈕垂直堆疊 */
+      gap: 15px;
+      width: 80%; /* 佔用更多寬度 */
+  }
+  .language-button {
+      font-size: 1.1em;
+      padding: 15px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 進一步縮小學習工具字體和間距 */
+  .note-section label {
+      font-size: 1em;
+  }
+  .note-input-section .input-textarea,
+  .note-output {
+      font-size: 0.9em;
+      padding: 10px;
+  }
+  .language-selection-area h3 {
+      font-size: 1.5em;
+  }
+  .language-button {
+      font-size: 1em;
+      padding: 12px 20px;
+  }
+}

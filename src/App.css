@@ -1,0 +1,596 @@
+/* src/App.css */
+
+/* 全域樣式設定 */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* 防止水平捲軸 */
+  scroll-behavior: smooth; /* 捲動平滑效果 */
+  background-color: #c99c75; /* 統一的棕色背景 */
+  color: #5c3a2f; /* 深褐色 - 基礎文字顏色 */
+}
+
+/* App 容器樣式 */
+.App {
+  text-align: center;
+}
+
+/* 導覽列樣式 */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, #a85f3e, #d49a6a, #e6bf96);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  padding: 15px 0;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.navbar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-brand {
+  color: #fcecd5;
+  font-size: 1.1em;
+  font-weight: bold;
+  white-space: nowrap;
+  padding-right: 20px;
+}
+
+.navbar-info {
+  color: #fcecd5;
+  font-size: 0.9em;
+  white-space: nowrap;
+  text-align: right;
+  padding-left: 20px;
+}
+
+.navbar-info span {
+    display: block;
+    margin-bottom: 2px;
+}
+.navbar-info span:last-child {
+    margin-bottom: 0;
+}
+
+
+.navbar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-grow: 1;
+}
+
+.navbar-menu li {
+  position: relative;
+}
+
+.navbar-menu li button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.15em;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-menu li button:hover {
+  color: #fcecd5;
+  transform: translateY(-3px);
+}
+
+/* 次選單樣式 */
+.submenu {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #5c3a2f;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  min-width: 180px;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top center;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 101;
+}
+
+.has-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.submenu li {
+  width: 100%;
+}
+
+.submenu li button {
+  width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+  color: #f5f2ed;
+  font-size: 1em;
+  font-weight: normal;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.submenu li button:hover {
+  background-color: #7c4c3b;
+  color: white;
+  transform: none;
+}
+
+
+/* 共同區塊樣式 */
+.App-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  padding: 20px;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.App-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 初始大標題區塊樣式 */
+.initial-section {
+  background-color: #fcecd5;
+  color: #7c4c3b;
+  background-blend-mode: multiply;
+  z-index: 3;
+}
+
+/* 大字標題和內文框的互動效果 */
+.initial-section h1,
+.story-content,
+.examples-grid .example-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.initial-section h1:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+  text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.initial-section h1 {
+  font-size: 5em;
+  color: #a85f3e;
+  margin-bottom: 20px;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 1.5s ease-out, transform 0.3s ease;
+}
+
+
+.story-section h2,
+.examples-section h2,
+.navigation-section h2 {
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.story-section h2:hover,
+.examples-section h2:hover,
+.navigation-section h2:hover {
+    transform: translateY(-5px);
+    color: #c0926d;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.story-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* 故事感區塊樣式 */
+.story-section {
+  background-color: #e6bf96;
+  color: #6b4433;
+  background-blend-mode: overlay;
+  z-index: 2;
+  text-align: left;
+}
+
+.story-content {
+  width: 85%;
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.5em;
+  line-height: 2;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* AI 例子區塊樣式 */
+.examples-section {
+  background-color: #c99c75;
+  color: #4e342e;
+  z-index: 1;
+}
+
+.examples-section h2 {
+  font-size: 3em;
+  color: #5c3a2f;
+  margin-bottom: 50px;
+}
+
+.examples-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.example-item {
+  flex: 1 1 calc(33% - 60px);
+  min-width: 300px;
+  padding: 35px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.example-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.example-item h3 {
+  color: #8d6e63;
+  margin-bottom: 15px;
+  font-size: 1.8em;
+}
+
+.example-item p {
+  line-height: 1.8;
+  color: #666;
+  font-size: 1.1em;
+}
+
+/* 導覽區塊樣式 (AI小工具總覽) - 更新為卡片佈局樣式 */
+.navigation-section {
+  background-color: #c99c75;
+  color: #f5f2ed;
+  z-index: 0;
+  padding: 80px 20px;
+  min-height: 100vh;
+  justify-content: flex-start;
+}
+
+.navigation-section h2 {
+  font-size: 3.8em;
+  color: #fcecd5;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.navigation-section > p {
+  font-size: 1.4em;
+  color: #f5f2ed;
+  margin-bottom: 60px;
+  max-width: 800px;
+  text-align: center;
+}
+
+.tool-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.tool-category {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.tool-category h3 {
+  font-size: 2.5em;
+  color: #fcecd5;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.tool-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.tool-card-item {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tool-card-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.tool-card-item h4 {
+  font-size: 1.6em;
+  color: #795548;
+  margin-bottom: 15px;
+}
+
+.tool-card-item p {
+  font-size: 1em;
+  color: #5c3a2f;
+  line-height: 1.6;
+}
+
+/* 不同類別卡片的框架顏色 */
+.tool-category.life-tools .tool-card-item {
+  border: 3px solid #d49a6a;
+}
+
+.tool-category.learning-tools .tool-card-item {
+  border: 3px solid #a8795d;
+}
+
+.tool-category.games .tool-card-item {
+  border: 3px solid #7c4c3b;
+}
+
+
+/* 捲動提示文字樣式 */
+.scroll-indicator {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2em;
+  color: rgba(92, 58, 47, 0.8);
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+}
+
+/* 回到最上按鈕樣式 */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #7c4c3b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+  z-index: 99;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  background-color: #5c3a2f;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 確保所有標題都有指針樣式 */
+h1, h2 {
+  cursor: pointer;
+}
+
+/* src/App.css */
+
+/* ... (App.css 檔案上方所有通用樣式、導覽列樣式、共同區塊樣式、首頁各區塊樣式等保持不變) ... */
+
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+  .navbar-menu {
+    gap: 15px; /* 縮小導覽列選單間距 */
+  }
+  .navbar-menu li button {
+    font-size: 1em; /* 縮小導覽列按鈕字體 */
+    padding: 8px 12px;
+  }
+  .submenu {
+    min-width: 150px; /* 縮小次選單寬度 */
+  }
+  .tool-category h3 {
+    font-size: 2em; /* 縮小類別標題 */
+  }
+  .tool-card-item {
+    padding: 25px; /* 縮小卡片內邊距 */
+  }
+}
+
+@media (max-width: 768px) {
+  /* 導覽列佈局調整 - 在平板和較小電腦螢幕上 */
+  .navbar-content {
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 內容置中 */
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .navbar-brand {
+    padding-right: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%; /* 佔滿一行 */
+    font-size: 1.05em; /* 調整字體大小 */
+    white-space: normal; /* 允許換行 */
+    overflow-wrap: break-word; /* 強制長文字換行 */
+  }
+  .navbar-menu {
+    flex-wrap: wrap; /* 選單項目換行 */
+    justify-content: center; /* 選單項目置中 */
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .navbar-menu li {
+    margin: 5px 0;
+  }
+  .navbar-info {
+    text-align: center;
+    width: 100%;
+    padding-left: 0;
+    font-size: 0.85em; /* 調整字體大小 */
+    white-space: normal; /* 允許換行 */
+    overflow-wrap: break-word; /* 強制長文字換行 */
+  }
+
+  /* 首頁內容字體調整 */
+  .initial-section h1 {
+    font-size: 3.5em;
+  }
+  .story-content {
+    font-size: 1.2em;
+    padding: 25px;
+  }
+  .examples-section h2, .navigation-section h2 {
+    font-size: 2.5em;
+  }
+  .examples-grid .example-item {
+    min-width: 250px;
+    padding: 25px;
+  }
+  .navigation-section > p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+  }
+  .tool-category h3 {
+    font-size: 1.8em;
+  }
+  .tool-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 更小的卡片網格 */
+    gap: 20px;
+  }
+  .tool-card-item h4 {
+    font-size: 1.4em;
+  }
+  .tool-card-item p {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 更小螢幕（手機）的導覽列調整 */
+  .navbar-brand {
+      font-size: 0.9em; /* 進一步縮小標題字體 */
+      margin-bottom: 8px; /* 調整間距 */
+  }
+  .navbar-info {
+      font-size: 0.75em; /* 進一步縮小個人資訊字體 */
+      margin-top: 8px; /* 調整間距 */
+  }
+  .navbar-menu {
+      gap: 10px; /* 選單按鈕間距更小 */
+      margin-bottom: 8px;
+  }
+  .navbar-menu li button {
+      font-size: 0.8em;
+      padding: 5px 8px;
+  }
+  .submenu {
+      min-width: 100px;
+  }
+  .App-section {
+      height: auto;
+      min-height: 100vh;
+      padding: 80px 10px;
+  }
+  .examples-section h2, .navigation-section h2 {
+    font-size: 1.8em;
+  }
+  .tool-categories {
+    gap: 30px;
+  }
+  .tool-category h3 {
+    font-size: 1.4em;
+  }
+  .tool-cards-grid {
+    grid-template-columns: 1fr; /* 單列佈局 */
+  }
+  .tool-card-item {
+    min-height: auto;
+  }
+  .scroll-to-top {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4em;
+    bottom: 20px;
+    right: 20px;
+  }
+}
